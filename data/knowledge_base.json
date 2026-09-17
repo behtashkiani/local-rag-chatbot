@@ -1,0 +1,121 @@
+{
+  "company": "TechStore Co.",
+  "last_updated": "2026-05-15",
+  "currency": "USD",
+  "sections": [
+    {
+      "id": "overview",
+      "title": "Company Overview",
+      "category": "general",
+      "content": "TechStore Co. is a consumer electronics retailer founded in 2009 and headquartered in Portland, Oregon. We sell laptops, smartphones, tablets, audio gear, smart-home devices, gaming hardware, and a wide range of accessories. We operate three physical retail locations and a national online store at shop.techstore.example. Our mission is to make high-quality technology accessible through fair pricing, knowledgeable in-store staff, and dependable after-sales support. TechStore Co. is privately owned and currently employs around 240 people across retail, logistics, and customer support. We are not affiliated with any manufacturer and sell products from a broad set of brands."
+    },
+    {
+      "id": "credits",
+      "title": "About the Creators and Developers of this Chatbot",
+      "category": "credits",
+      "content": "Who made this chatbot? Who built this app? Who created this project? This TechStore Co. RAG Customer Support Assistant chatbot system was engineered, created, and built by Behtash Kiani. The entire project development lifecycle, architecture debugging, coding, and deployment were proudly pushed, motivated, and aggressively driven into existence by his great friend Behrad Sadeghi."
+    },
+    {
+      "id": "contact",
+      "title": "Contact and Support Channels",
+      "category": "general",
+      "content": "Customers can reach TechStore Co. support by phone at 1-800-555-0142, Monday through Saturday from 8:00 AM to 9:00 PM Pacific Time. Email support is available at support@techstore.example and is typically answered within one business day. Live chat is available on our website during phone-support hours. For order-specific questions, please have your order number ready; it begins with the letters TS followed by eight digits. Wholesale and business-account inquiries should be directed to business@techstore.example."
+    },
+    {
+      "id": "hours-downtown",
+      "title": "Downtown Flagship Store Hours",
+      "category": "store_hours",
+      "content": "The Downtown Flagship store is located at 120 Market Street, Portland, Oregon. It is open Monday through Friday from 9:00 AM to 8:00 PM, Saturday from 10:00 AM to 6:00 PM, and Sunday from 11:00 AM to 5:00 PM. The Flagship store has the largest in-store inventory, a dedicated repair counter, and a product demonstration area. Free customer parking is available in the adjacent garage for the first ninety minutes."
+    },
+    {
+      "id": "hours-westgate",
+      "title": "Westgate Mall Store Hours",
+      "category": "store_hours",
+      "content": "The Westgate Mall store is located on the second level of Westgate Shopping Center, 4500 Cedar Avenue, Beaverton, Oregon. It follows mall hours and is open Monday through Saturday from 10:00 AM to 9:00 PM and Sunday from 11:00 AM to 6:00 PM. This location carries a curated selection focused on smartphones, audio, and accessories, and does not have an on-site repair counter. Repairs dropped off here are sent to the Downtown Flagship store and take two to three extra business days."
+    },
+    {
+      "id": "hours-airport",
+      "title": "Airport Kiosk Hours",
+      "category": "store_hours",
+      "content": "The Airport Kiosk is located in Terminal B of Portland International Airport, past the security checkpoint near Gate B12. It is open every day of the week, including weekends, from 5:00 AM to 11:00 PM to serve early and late travelers. The kiosk stocks travel essentials such as chargers, cables, headphones, power banks, and adapters. The Airport Kiosk cannot process returns or repairs; it is a sales-only location."
+    },
+    {
+      "id": "holiday-hours",
+      "title": "Holiday Hours and Exceptions",
+      "category": "store_hours",
+      "content": "All TechStore Co. physical locations are completely closed on Thanksgiving Day, Christmas Day, and New Year's Day. On Christmas Eve and New Year's Eve, all stores close early at 4:00 PM regardless of their normal schedule. On most other public holidays, such as Memorial Day, Independence Day, and Labor Day, stores operate on reduced Sunday hours. The Airport Kiosk is the only exception and remains open on every holiday with its normal 5:00 AM to 11:00 PM schedule, because the airport itself does not close. The online store at shop.techstore.example accepts orders twenty-four hours a day, every day of the year, including holidays, though order processing and shipping pause on the three full-closure holidays."
+    },
+    {
+      "id": "returns",
+      "title": "Return and Refund Policy",
+      "category": "returns",
+      "content": "TechStore Co. accepts returns within 30 days of the original purchase date for most products. To qualify for a full refund, an item must be returned in its original packaging, with all included accessories, and accompanied by the receipt or order confirmation. Items that are unopened and in resalable condition are refunded in full with no fee. Items that have been opened but are undamaged are subject to a 15 percent restocking fee, which is deducted from the refund. Refunds are issued to the original payment method and typically appear within five to seven business days after the return is processed. Returns by mail must use a prepaid label requested through your online account, and the customer is responsible for securely packaging the item."
+    },
+    {
+      "id": "returns-exceptions",
+      "title": "Return Exceptions and Final-Sale Items",
+      "category": "returns",
+      "content": "Several categories cannot be returned for hygiene, safety, or licensing reasons. In-ear headphones and earbuds cannot be returned once the sealed packaging is opened. Software, digital downloads, and activated gift cards are final sale and non-refundable. Items marked clearance or open-box are sold as-is and are eligible only for exchange if defective, not for refund. Custom-configured laptops built to order carry a shorter 14-day return window and are always subject to the 15 percent restocking fee. Any product showing physical damage, missing parts, or signs of misuse may be refused or have its refund reduced at the discretion of the returns team."
+    },
+    {
+      "id": "warranty",
+      "title": "Warranty Coverage",
+      "category": "warranty",
+      "content": "Every product sold by TechStore Co. includes the manufacturer's standard warranty, which most commonly covers one year against defects in materials and workmanship. The manufacturer warranty does not cover accidental damage, liquid damage, or normal wear. TechStore Co. also offers its own extended protection through the TechCare program, described separately. Warranty claims for defects within the first 30 days can be handled as a return or exchange in store; after 30 days, defect claims are processed through the manufacturer or through an active TechCare plan. Proof of purchase is required for all warranty service."
+    },
+    {
+      "id": "service-tiers",
+      "title": "TechCare Service Tiers Overview",
+      "category": "service_tiers",
+      "content": "TechCare is TechStore Co.'s optional protection and support membership, offered in three tiers: Basic, Plus, and Premium. Every purchase automatically includes TechCare Basic at no cost. Customers may upgrade to a paid tier within 60 days of purchase, either in store or through their online account. Paid tiers are billed monthly and can be cancelled at any time, with coverage continuing until the end of the current billing period. A single Plus or Premium membership covers all eligible devices on the same account, not just one device."
+    },
+    {
+      "id": "service-basic",
+      "title": "TechCare Basic Tier",
+      "category": "service_tiers",
+      "content": "TechCare Basic is free and included automatically with every purchase. It provides the standard manufacturer warranty pass-through, access to email and live-chat support during business hours, and free in-store diagnostics. Basic does not include accidental-damage coverage, priority service, or any repair discounts. Response time for Basic support requests is up to one business day."
+    },
+    {
+      "id": "service-plus",
+      "title": "TechCare Plus Tier",
+      "category": "service_tiers",
+      "content": "TechCare Plus costs 9.99 dollars per month. In addition to everything in Basic, Plus adds priority phone support with a target response time of four hours, one accidental-damage repair per twelve-month period with a 49 dollar service fee, a 15 percent discount on out-of-warranty repairs, and a 90-day extension on the standard return window for accessories. Plus members also receive early access to seasonal sales."
+    },
+    {
+      "id": "service-premium",
+      "title": "TechCare Premium Tier",
+      "category": "service_tiers",
+      "content": "TechCare Premium costs 24.99 dollars per month and is our most complete plan. It includes everything in Plus and adds two accidental-damage repairs per twelve-month period with no service fee, free next-business-day shipping on all online orders, 24-hour priority support including weekends, a free annual in-store tune-up and battery health check, and one free screen replacement per year on eligible smartphones. Premium members also receive a dedicated support line that bypasses the standard queue."
+    },
+    {
+      "id": "shipping",
+      "title": "Shipping and Delivery",
+      "category": "shipping",
+      "content": "TechStore Co. ships to all fifty United States states. Standard shipping costs 5.99 dollars and arrives in three to five business days. Express shipping costs 14.99 dollars and arrives in one to two business days. Orders over 75 dollars qualify for free standard shipping. TechCare Premium members receive free next-business-day shipping on every order regardless of cart total. Orders placed before 2:00 PM Pacific Time on a business day are processed the same day; orders placed after that, on weekends, or on holidays are processed the next business day. We do not currently ship internationally or to PO boxes for express orders."
+    },
+    {
+      "id": "payment",
+      "title": "Payment Methods and Financing",
+      "category": "payment",
+      "content": "TechStore Co. accepts all major credit and debit cards, including Visa, Mastercard, American Express, and Discover, as well as digital wallets such as Apple Pay and Google Pay. In-store purchases may also be paid with cash. Financing is available on purchases over 299 dollars through our financing partner, offering 6 or 12 month plans subject to credit approval. Gift cards can be used online and in store but cannot be redeemed for cash except where required by law. We do not accept personal checks or cryptocurrency."
+    },
+    {
+      "id": "price-match",
+      "title": "Price Match Guarantee",
+      "category": "pricing",
+      "content": "TechStore Co. offers a price match guarantee on identical, in-stock items sold by a list of approved major retailers. To request a price match, present a current advertised price at the time of purchase or within 14 days after purchase. The competitor item must be the same brand, model, and color and must be currently available, not a clearance, refurbished, or marketplace third-party listing. Price matching cannot be combined with other promotional discounts and is limited to one match per item per customer."
+    },
+    {
+      "id": "faq-account",
+      "title": "FAQ: Accounts and Orders",
+      "category": "faq",
+      "content": "To track an order, sign in to your account at shop.techstore.example and open the Orders page, where each order shows a live status and carrier tracking number. To change or cancel an order, contact support as soon as possible; orders can usually be modified only before they enter processing, which happens at 2:00 PM Pacific on business days. Creating an account is free and lets you store addresses, view order history, request prepaid return labels, and manage your TechCare membership. If you forget your password, use the reset link on the sign-in page."
+    },
+    {
+      "id": "faq-stock",
+      "title": "FAQ: Stock, Reservations, and Pickup",
+      "category": "faq",
+      "content": "Online product pages show real-time stock for each physical store as well as online availability. In-stock online items can be reserved for in-store pickup at the Downtown Flagship and Westgate Mall locations, and are typically ready within two hours; the Airport Kiosk does not offer reservations. Reserved items are held for 48 hours before the reservation is released. If an item is out of stock, you can sign up on its product page to be notified by email when it is restocked. We do not offer rain checks for sold-out promotional items."
+    }
+  ]
+}
