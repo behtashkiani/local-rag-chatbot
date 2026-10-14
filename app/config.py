@@ -2,8 +2,12 @@
 Application configuration.
 
 All tunable parameters live here and are sourced from environment variables
-(optionally via a local ``.env`` file). Nothing else in the codebase reads
-``os.environ`` directly, so configuration stays in one auditable place.
+(optionally via a local `.env` file). Nothing else in the codebase reads
+`os.environ` directly, so configuration stays in one auditable place.
+
+Note: the LLM backend (app/llm_service.py) talks to a local Ollama server
+directly and does not read settings from this file. These fields only
+affect retrieval, sessions, and the HTTP server.
 """
 
 from __future__ import annotations
@@ -18,7 +22,7 @@ class Settings(BaseSettings):
     """Strongly-typed application settings.
 
     Values are read (in order of precedence) from: explicit constructor
-    arguments, environment variables, then a ``.env`` file. Unknown env vars
+    arguments, environment variables, then a `.env` file. Unknown env vars
     are ignored so the same environment can host other services.
     """
 
@@ -27,28 +31,6 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         case_sensitive=False,
         extra="ignore",
-    )
-
-    # --- LLM / Anthropic ---------------------------------------------------
-    anthropic_api_key: str = Field(
-        default="",
-        description="Anthropic API key. Loaded from ANTHROPIC_API_KEY.",
-    )
-    model: str = Field(
-        default="claude-opus-4-8",
-        description="Anthropic model identifier used for generation.",
-    )
-    max_tokens: int = Field(default=1024, ge=1, le=8192)
-    # Temperature 0.0 keeps answers deterministic and tightly grounded, which
-    # is what we want for a policy-answering support bot.
-    temperature: float = Field(default=0.0, ge=0.0, le=1.0)
-    request_timeout: float = Field(
-        default=30.0, gt=0, description="Per-request HTTP timeout in seconds."
-    )
-    max_retries: int = Field(
-        default=2,
-        ge=0,
-        description="SDK-level automatic retries for transient API errors.",
     )
 
     # --- Knowledge base / retrieval ---------------------------------------
@@ -89,10 +71,6 @@ class Settings(BaseSettings):
         if window is not None and v > window:
             raise ValueError("chunk_stride must be <= chunk_window")
         return v
-
-    @property
-    def has_api_key(self) -> bool:
-        return bool(self.anthropic_api_key.strip())
 
 
 @lru_cache
