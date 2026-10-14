@@ -103,10 +103,16 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
+# allow_credentials=True combined with a wildcard allow_origins makes
+# Starlette reflect back whatever Origin header the request sent (since a
+# literal "*" can't be paired with credentials per the CORS spec), which
+# effectively allows any site to make credentialed requests. This API
+# doesn't use cookies, so credentials aren't needed; keep it off unless a
+# future cookie-based auth scheme is added alongside a real origin allowlist.
 app.add_middleware(
     CORSMiddleware,
     allow_origins=get_settings().allowed_origins,
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
