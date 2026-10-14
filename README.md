@@ -194,3 +194,7 @@ fixed in `app/llm_service.py` rather than read from `.env`.
   it with TF-IDF (hybrid retrieval).
 - Add request authentication/rate limiting at the edge and structured request
   logging/metrics.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
