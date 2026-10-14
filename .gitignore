@@ -3,14 +3,13 @@
 env/
 venv/
 
-#Python cache & compiled files
+# Python cache & compiled files
 __pycache__/
 *.pyc
-app/ __pycache__/
 
 # Environment variables & secrets
 .env
 
-#Testing & coverage
+# Testing & coverage
 .pytest_cache/
 .DS_Store
