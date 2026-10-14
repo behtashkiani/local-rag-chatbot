@@ -170,6 +170,22 @@ A response looks like:
 The Ollama host (`http://localhost:11434`) and model (`llama3.2`) are currently
 fixed in `app/llm_service.py` rather than read from `.env`.
 
+## Known limitations
+
+- **No authentication or session ownership check.** `session_id` is an
+  opaque, client-supplied string with nothing tying it to a real user.
+  Anyone who knows or guesses another session's ID can read that
+  conversation's history (via `/api/chat`) or clear it
+  (`DELETE /api/sessions/{id}`). Fine for a local demo; a real deployment
+  would need session IDs issued and verified server-side (e.g. signed
+  tokens) rather than trusted as-is from the client.
+- **`ALLOWED_ORIGINS` defaults to `["*"]`.** Fine for local development;
+  set it to your actual frontend origin(s) before deploying anywhere
+  public.
+- **Single-process, in-memory session store.** Restarting the server drops
+  all conversation history, and it won't work correctly behind multiple
+  worker processes without the Redis swap mentioned below.
+
 ## Notes / next steps for true production
 
 - Swap the in-memory session store for Redis to support multiple workers.
