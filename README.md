@@ -2,8 +2,8 @@
 
 A production-grade Retrieval-Augmented Generation (RAG) chatbot that answers
 customer questions **strictly** from a company knowledge base. Built with
-FastAPI, a dependency-light NumPy TF-IDF retriever, and the Anthropic Claude
-API (`claude-opus-4-8`).
+FastAPI, a dependency-light NumPy TF-IDF retriever, and a local Ollama
+model (`llama3.2`) for generation - no cloud API key needed.
 
 The defining property of this system is **grounding**: the model is given only
 the retrieved knowledge-base passages and is instructed to refuse anything not
@@ -15,16 +15,16 @@ policies, prices, or hours.
 ## Architecture
 
 ```
-techstore-rag-chatbot/
+local-rag-chatbot/
 ├── app/
 │   ├── __init__.py
 │   ├── config.py              # Typed settings from env / .env (single source)
 │   ├── models.py              # Pydantic request/response schemas + validation
 │   ├── document_processor.py  # Load KB, clean text, sentence-window chunking
 │   ├── retrieval_engine.py    # NumPy TF-IDF index + cosine-similarity search
-│   ├── llm_service.py         # Grounded prompt + async Claude call + error handling
+│   ├── llm_service.py         # Grounded prompt + call to local Ollama + error handling
 │   ├── session_manager.py     # Bounded, LRU in-memory conversation history
-│   └── main.py                # FastAPI app: lifespan wiring + endpoints
+│   └── main.py                 # FastAPI app: lifespan wiring + endpoints
 ├── data/
 │   └── knowledge_base.json    # Mock "TechStore Co." knowledge base
 ├── tests/
@@ -39,7 +39,7 @@ techstore-rag-chatbot/
 ```
 client → validate (Pydantic) → retrieve top-k chunks (TF-IDF + cosine)
        → build grounded prompt (system rules + history + <knowledge_base>)
-       → Claude (claude-opus-4-8) → persist exchange → JSON answer + sources
+       → local Ollama (llama3.2) → persist exchange → JSON answer + sources
 ```
 
 The clean separation matters: `retrieval_engine` knows nothing about HTTP or
@@ -58,7 +58,8 @@ python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\act
 pip install -r requirements.txt
 
 cp .env.example .env
-# edit .env and set ANTHROPIC_API_KEY=sk-ant-...
+# make sure Ollama is running locally and the model is pulled:
+#   ollama pull llama3.2
 ```
 
 ## Run
@@ -114,7 +115,7 @@ A response looks like:
   ],
   "retrieved_count": 3,
   "degraded": false,
-  "model": "claude-opus-4-8"
+  "model": "llama3.2"
 }
 ```
 
@@ -134,11 +135,11 @@ A response looks like:
   Vectors are L2-normalized so cosine similarity is a single matrix–vector dot
   product. For a much larger corpus, swap the dense matrix for `scipy.sparse`
   or an embedding-backed vector store behind the same `retrieve()` interface.
-- **Resilient LLM layer.** The Anthropic SDK auto-retries transient errors
-  (connection issues, 429, ≥500) with backoff; on top of that, the service
-  catches auth errors (surfaced as 503 for operator attention) and transient
-  failures (returned as a polite fallback message with `degraded: true`) so the
-  API never returns a 500 for a reachable-but-busy upstream.
+- **Resilient LLM layer.** Calls to the local Ollama server are wrapped so a
+  timeout, connection failure, or unexpected response from `llama3.2` is caught
+  and surfaced as a clear `503` instead of crashing the request; `/health`
+  reports whether Ollama is currently reachable so failures are diagnosable
+  without reading logs.
 - **Bounded memory.** Sessions keep only the most recent N messages, and the
   store keeps only the most recent M sessions (LRU), so a long-running process
   cannot grow without limit.
@@ -158,15 +159,16 @@ A response looks like:
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | — | **Required** to answer. |
-| `MODEL` | `claude-opus-4-8` | Generation model. |
+| `KNOWLEDGE_BASE_PATH` | `data/knowledge_base.json` | Path to the knowledge-base file. |
 | `TOP_K` | `3` | Chunks retrieved per query. |
 | `MIN_SIMILARITY` | `0.05` | Drop chunks below this cosine score. |
 | `CHUNK_WINDOW` / `CHUNK_STRIDE` | `3` / `2` | Sentence window + overlap. |
 | `MAX_HISTORY_MESSAGES` | `10` | Messages retained per session. |
 | `MAX_SESSIONS` | `1000` | Sessions retained (LRU). |
-| `MAX_TOKENS` / `TEMPERATURE` | `1024` / `0.0` | Generation limits. |
-| `REQUEST_TIMEOUT` / `MAX_RETRIES` | `30` / `2` | HTTP timeout + SDK retries. |
+| `ALLOWED_ORIGINS` | `["*"]` | CORS allowed origins (lock down in production). |
+
+The Ollama host (`http://localhost:11434`) and model (`llama3.2`) are currently
+fixed in `app/llm_service.py` rather than read from `.env`.
 
 ## Notes / next steps for true production
 
